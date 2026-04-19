@@ -1,0 +1,303 @@
+// Version: 3.0.0
+type Address__823872639 =
+  {city : Text; state : Text; street : Text; zip : Text};
+type BlogArticle__1060352343 =
+  {
+    authorName : Text;
+    category : BlogCategory__541533666;
+    content : Text;
+    excerpt : Text;
+    id : Text;
+    isPublished : Bool;
+    publishedAt : Int;
+    slug : Text;
+    title : Text;
+    updatedAt : Int
+  };
+type BlogCategory__541533666 =
+  {
+    #CeaseDesist;
+    #Contractor;
+    #Debt;
+    #Employment;
+    #Insurance;
+    #Landlord;
+    #PropertyDamage;
+    #Refund
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type GeneratedLetter__212566085 =
+  {
+    createdAt : Timestamp__301639476;
+    downloadCount : Nat;
+    formData : LetterFormData__903636717;
+    id : LetterId__221481133;
+    isFollowUp : Bool;
+    lastDownloadAt : ?Int;
+    letterContent : Text;
+    originalLetterId : ?LetterId__221481133;
+    status : LetterStatus__607354906;
+    userId : UserId__158757552
+  };
+type GmailToken__1010387074 =
+  {accessToken : Text; expiresAt : Timestamp__301639476; refreshToken : Text};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type LetterFormData__903636717 =
+  {
+    accountName : ?Text;
+    accountNumber : ?Text;
+    amountDemanded : ?Nat;
+    creditBureauName : ?Text;
+    creditDisputeDescription : ?Text;
+    creditSupportingDocs : ?[Text];
+    currency : Text;
+    deadlineDays : Nat;
+    disputeDescription : Text;
+    evidenceImages : [Text];
+    evidenceItems : [Text];
+    inaccuracyType : ?Text;
+    incidentDate : Text;
+    jurisdiction : Text;
+    letterType : LetterType__728543232;
+    preferredResolution : Text;
+    priorContact : PriorContact__541833849;
+    recipientAddress : Address__823872639;
+    recipientName : Text;
+    recipientRole : Text;
+    senderAddress : Address__823872639;
+    senderEmail : Text;
+    senderName : Text;
+    senderPhone : Text;
+    tone : LetterTone__925455876
+  };
+type LetterId__221481133 = Text;
+type LetterStatus__607354906 =
+  {#Draft; #FollowUpNeeded; #Resolved; #ResponseReceived; #Sent};
+type LetterTone__925455876 = {#Assertive; #FinalWarning; #Firm};
+type LetterType__728543232 =
+  {
+    #CeaseDesist;
+    #ContractorDispute;
+    #CreditReportDispute;
+    #DebtRecovery;
+    #EmploymentDispute;
+    #InsuranceClaim;
+    #LandlordTenant;
+    #PropertyDamage;
+    #RefundConsumer
+  };
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldAddress__1053488244 =
+  {city : Text; state : Text; street : Text; zip : Text};
+type OldGeneratedLetter__30232311 =
+  {
+    createdAt : Int;
+    downloadCount : Nat;
+    formData : OldLetterFormData__125016424;
+    id : Text;
+    isFollowUp : Bool;
+    lastDownloadAt : ?Int;
+    letterContent : Text;
+    originalLetterId : ?Text;
+    status : OldLetterStatus__561917394;
+    userId : Text
+  };
+type OldLetterFormData__125016424 =
+  {
+    amountDemanded : ?Nat;
+    currency : Text;
+    deadlineDays : Nat;
+    disputeDescription : Text;
+    evidenceImages : [Text];
+    evidenceItems : [Text];
+    incidentDate : Text;
+    jurisdiction : Text;
+    letterType : OldLetterType__978260962;
+    preferredResolution : Text;
+    priorContact : OldPriorContact__1014821;
+    recipientAddress : OldAddress__1053488244;
+    recipientName : Text;
+    recipientRole : Text;
+    senderAddress : OldAddress__1053488244;
+    senderEmail : Text;
+    senderName : Text;
+    senderPhone : Text;
+    tone : OldLetterTone__642026797
+  };
+type OldLetterStatus__561917394 =
+  {#Draft; #FollowUpNeeded; #Resolved; #ResponseReceived; #Sent};
+type OldLetterTone__642026797 = {#Assertive; #FinalWarning; #Firm};
+type OldLetterType__978260962 =
+  {
+    #CeaseDesist;
+    #ContractorDispute;
+    #CreditReportDispute;
+    #DebtRecovery;
+    #EmploymentDispute;
+    #InsuranceClaim;
+    #LandlordTenant;
+    #PropertyDamage;
+    #RefundConsumer
+  };
+type OldPriorContact__1014821 =
+  {attempted : Bool; count : Nat; method : Text};
+type PartnershipRequest__302146010 =
+  {
+    company : Text;
+    createdAt : Timestamp__301639476;
+    email : Text;
+    id : Text;
+    message : Text;
+    name : Text;
+    preferredDate : Text;
+    preferredTime : Text;
+    status : Text
+  };
+type PriorContact__541833849 = {attempted : Bool; count : Nat; method : Text};
+type StripeConfiguration__96897619 =
+  {allowedCountries : [Text]; secretKey : Text};
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Text;
+type UserPlan__643623682 = {#Business; #Free; #PayPerLetter; #Pro};
+type UserProfile__277265826 =
+  {
+    createdAt : Timestamp__301639476;
+    currentMonthYear : Text;
+    email : ?Text;
+    lettersThisMonth : Nat;
+    plan : UserPlan__643623682;
+    stripeCustomerId : ?Text;
+    stripeSubscriptionId : ?Text;
+    totalLetters : Nat;
+    userId : UserId__158757552
+  };
+type UserRole__1054455867 = {#admin; #guest; #user};
+actor ({
+  stable B64_CHARS : [Nat8];
+  stable CLAUDE_API_URL : Text;
+  stable CLAUDE_MODEL : Text;
+  stable GLOBAL_HOURLY_CAP : Nat;
+  stable GLOBAL_WINDOW_NS : Int;
+  stable MAX_TOKENS_TEXT : Text;
+  stable RATE_MAX_PER_WINDOW : Nat;
+  stable RATE_WINDOW_NS : Int;
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
+    };
+  stable anthropicConfig : {var apiKey : ?Text};
+  stable articleCounter : {var value : Nat};
+  stable articles :
+    {
+      var root : Node__46230540<Text, BlogArticle__1060352343>;
+      var size : Nat__490723111
+    };
+  stable auditLog :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?(Timestamp__301639476, Text, Text, Text)]];
+      var elementIndex : Nat__490723111
+    };
+  stable globalRateState : {var count : Nat; var windowStart : Int};
+  stable gmailTokens :
+    {
+      var root : Node__46230540<Principal, GmailToken__1010387074>;
+      var size : Nat__490723111
+    };
+  stable letterCounter : {var value : Nat};
+  in letters : Map__605269027<Text, OldGeneratedLetter__30232311>;
+  stable partnershipCounter : {var value : Nat};
+  stable partnershipRequests :
+    {
+      var root : Node__46230540<Text, PartnershipRequest__302146010>;
+      var size : Nat__490723111
+    };
+  stable stripeConfig : {var value : ?StripeConfiguration__96897619};
+  stable userProfiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__277265826>;
+      var size : Nat__490723111
+    };
+  stable userRateLimits :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<Timestamp__301639476>>;
+      var size : Nat__490723111
+    }
+}, {
+  stable B64_CHARS : [Nat8];
+  stable CLAUDE_API_URL : Text;
+  stable CLAUDE_MODEL : Text;
+  stable GLOBAL_HOURLY_CAP : Nat;
+  stable GLOBAL_WINDOW_NS : Int;
+  stable MAX_TOKENS_TEXT : Text;
+  stable RATE_MAX_PER_WINDOW : Nat;
+  stable RATE_WINDOW_NS : Int;
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
+    };
+  stable anthropicConfig : {var apiKey : ?Text};
+  stable articleCounter : {var value : Nat};
+  stable articles :
+    {
+      var root : Node__46230540<Text, BlogArticle__1060352343>;
+      var size : Nat__490723111
+    };
+  stable auditLog :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?(Timestamp__301639476, Text, Text, Text)]];
+      var elementIndex : Nat__490723111
+    };
+  stable globalRateState : {var count : Nat; var windowStart : Int};
+  stable gmailTokens :
+    {
+      var root : Node__46230540<Principal, GmailToken__1010387074>;
+      var size : Nat__490723111
+    };
+  stable letterCounter : {var value : Nat};
+  stable letters :
+    {
+      var root :
+        Node__46230540<LetterId__221481133, GeneratedLetter__212566085>;
+      var size : Nat__490723111
+    };
+  stable partnershipCounter : {var value : Nat};
+  stable partnershipRequests :
+    {
+      var root : Node__46230540<Text, PartnershipRequest__302146010>;
+      var size : Nat__490723111
+    };
+  stable stripeConfig : {var value : ?StripeConfiguration__96897619};
+  stable userProfiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__277265826>;
+      var size : Nat__490723111
+    };
+  stable userRateLimits :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<Timestamp__301639476>>;
+      var size : Nat__490723111
+    }
+}) ;

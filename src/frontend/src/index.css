@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "DM Sans";
+    --font-body: "DM Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.5rem;
+
+    --background: 0.98 0.005 0;
+    --foreground: 0.25 0.08 256;
+    --card: 1.0 0 0;
+    --card-foreground: 0.25 0.08 256;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.25 0.08 256;
+
+    --primary: 0.25 0.08 256;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.95 0.01 320;
+    --secondary-foreground: 0.25 0.08 256;
+    --muted: 0.92 0 0;
+    --muted-foreground: 0.55 0 0;
+
+    --accent: 0.58 0.15 142;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.9 0 0;
+    --input: 0.96 0 0;
+    --ring: 0.58 0.15 142;
+
+    --chart-1: 0.25 0.08 256;
+    --chart-2: 0.58 0.15 142;
+    --chart-3: 0.55 0.22 25;
+    --chart-4: 0.75 0.15 70;
+    --chart-5: 0.6 0.12 180;
+
+    --sidebar: 0.25 0.08 256;
+    --sidebar-foreground: 0.98 0 0;
+    --sidebar-primary: 0.58 0.15 142;
+    --sidebar-primary-foreground: 0.25 0.08 256;
+    --sidebar-accent: 0.95 0.01 320;
+    --sidebar-accent-foreground: 0.25 0.08 256;
+    --sidebar-border: 0.9 0 0;
+    --sidebar-ring: 0.58 0.15 142;
+
+    --warning: 0.75 0.2 60;
+  }
+
+  .dark {
+    --background: 0.12 0.003 256;
+    --foreground: 0.95 0 0;
+    --card: 0.16 0.005 256;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.2 0.008 256;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.7 0.12 256;
+    --primary-foreground: 0.12 0.003 256;
+
+    --secondary: 0.2 0.005 256;
+    --secondary-foreground: 0.85 0 0;
+    --muted: 0.2 0.005 256;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.65 0.18 142;
+    --accent-foreground: 0.12 0.003 256;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.95 0 0;
+
+    --border: 0.25 0.005 256;
+    --input: 0.25 0.005 256;
+    --ring: 0.65 0.18 142;
+
+    --chart-1: 0.7 0.12 256;
+    --chart-2: 0.65 0.18 142;
+    --chart-3: 0.65 0.19 22;
+    --chart-4: 0.75 0.18 142;
+    --chart-5: 0.65 0.25 16;
+
+    --sidebar: 0.16 0.005 256;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.65 0.18 142;
+    --sidebar-primary-foreground: 0.12 0.003 256;
+    --sidebar-accent: 0.2 0.005 256;
+    --sidebar-accent-foreground: 0.85 0 0;
+    --sidebar-border: 0.25 0.005 256;
+    --sidebar-ring: 0.65 0.18 142;
+
+    --warning: 0.65 0.22 60;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  @font-face {
+    font-family: "DM Sans";
+    src: url("/assets/fonts/DMSans.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-fast {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .legal-disclaimer {
+    @apply text-xs text-muted-foreground leading-relaxed;
+  }
+
+  .trust-badge {
+    @apply inline-flex items-center gap-1 text-xs font-medium text-muted-foreground;
+  }
+
+  .trust-icon {
+    @apply text-primary;
+  }
+
+  .warning-banner {
+    @apply bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-3 text-sm;
+  }
+
+  .letter-preview {
+    @apply bg-white border border-border rounded-md p-8 font-mono text-sm leading-relaxed;
+  }
+
+  .step-card {
+    @apply rounded-md border border-border bg-card p-4 transition-smooth hover:border-accent;
+  }
+
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .stat-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-medium;
+  }
+
+  /* Blog article prose styles */
+  .prose-article {
+    @apply text-foreground leading-relaxed;
+  }
+  .prose-article h2 {
+    @apply text-2xl font-bold text-foreground font-display mt-8 mb-4 leading-snug;
+  }
+  .prose-article h3 {
+    @apply text-xl font-semibold text-foreground mt-6 mb-3;
+  }
+  .prose-article h4 {
+    @apply text-base font-semibold text-foreground mt-4 mb-2;
+  }
+  .prose-article p {
+    @apply mb-4 text-foreground;
+  }
+  .prose-article ul {
+    @apply list-disc pl-6 mb-4 space-y-1;
+  }
+  .prose-article ol {
+    @apply list-decimal pl-6 mb-4 space-y-1;
+  }
+  .prose-article li {
+    @apply text-foreground;
+  }
+  .prose-article a {
+    @apply text-accent underline underline-offset-2 hover:text-accent/80 transition-colors;
+  }
+  .prose-article blockquote {
+    @apply border-l-4 border-accent/40 pl-4 py-1 my-4 text-muted-foreground italic;
+  }
+  .prose-article code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+  .prose-article pre {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto mb-4;
+  }
+  .prose-article strong {
+    @apply font-semibold text-foreground;
+  }
+  .prose-article hr {
+    @apply border-border my-6;
+  }
+  .prose-article table {
+    @apply w-full border-collapse text-sm mb-4;
+  }
+  .prose-article th {
+    @apply border border-border bg-muted px-3 py-2 text-left font-semibold;
+  }
+  .prose-article td {
+    @apply border border-border px-3 py-2;
+  }
+}

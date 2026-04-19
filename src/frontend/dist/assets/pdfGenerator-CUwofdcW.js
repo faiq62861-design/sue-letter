@@ -1,0 +1,179 @@
+import { c as createLucideIcon, l as LETTER_TYPE_CONFIG } from "./index-DkssxSHZ.js";
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$2 = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$2);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$1 = [
+  ["path", { d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7", key: "132q7q" }],
+  ["rect", { x: "2", y: "4", width: "20", height: "16", rx: "2", key: "izxlao" }]
+];
+const Mail = createLucideIcon("mail", __iconNode$1);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode = [
+  ["path", { d: "M16 7h6v6", key: "box55l" }],
+  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
+];
+const TrendingUp = createLucideIcon("trending-up", __iconNode);
+function buildLetterHTML(data) {
+  const { formData, letterContent, watermark } = data;
+  const today = (/* @__PURE__ */ new Date()).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+  const letterTypeLabel = formData.letterType ? LETTER_TYPE_CONFIG[formData.letterType].label : "Demand";
+  const watermarkStyle = watermark ? `
+    <style>
+      body::after {
+        content: "Sue Letter";
+        position: fixed;
+        bottom: 80px;
+        right: 40px;
+        font-size: 10px;
+        color: #ccc;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transform: rotate(-30deg);
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    </style>` : "";
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demand Letter — ${letterTypeLabel}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1.6;
+      color: #1a1a2e;
+      background: #fff;
+      padding: 72px 80px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .letterhead {
+      border-bottom: 2px solid #0A2342;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    .sender-name {
+      font-size: 14pt;
+      font-weight: 600;
+      color: #0A2342;
+    }
+    .sender-details {
+      font-size: 10pt;
+      color: #555;
+      margin-top: 4px;
+    }
+    .date-block { margin-bottom: 24px; font-size: 11pt; }
+    .recipient-block { margin-bottom: 24px; }
+    .recipient-name { font-weight: 600; }
+    .re-line {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 10pt;
+      margin-bottom: 24px;
+      padding: 8px 12px;
+      background: #f4f6fb;
+      border-left: 4px solid #0A2342;
+    }
+    .body { white-space: pre-wrap; line-height: 1.7; }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 9pt;
+      color: #888;
+      text-align: center;
+    }
+    @media print {
+      body { padding: 48px; }
+    }
+  </style>
+  ${watermarkStyle}
+</head>
+<body>
+  <div class="letterhead">
+    <div class="sender-name">${escapeHTML(formData.senderName)}</div>
+    <div class="sender-details">
+      ${escapeHTML(formData.senderAddress)}, ${escapeHTML(formData.senderCity)}, ${escapeHTML(formData.senderState)} ${escapeHTML(formData.senderZip)}<br>
+      ${formData.senderPhone ? `Tel: ${escapeHTML(formData.senderPhone)} &nbsp;|&nbsp; ` : ""}${formData.senderEmail ? `Email: ${escapeHTML(formData.senderEmail)}` : ""}
+    </div>
+  </div>
+
+  <div class="date-block">${today}</div>
+
+  <div class="recipient-block">
+    <div class="recipient-name">${escapeHTML(formData.recipientName)}</div>
+    ${formData.recipientCompany ? `<div>${escapeHTML(formData.recipientCompany)}</div>` : ""}
+    ${formData.recipientTitle ? `<div>${escapeHTML(formData.recipientTitle)}</div>` : ""}
+    <div>${escapeHTML(formData.recipientAddress)}</div>
+    <div>${escapeHTML(formData.recipientCity)}${formData.recipientState ? `, ${escapeHTML(formData.recipientState)}` : ""} ${escapeHTML(formData.recipientZip)}</div>
+  </div>
+
+  <div class="re-line">Re: ${letterTypeLabel} — Formal Demand for Resolution</div>
+
+  <div class="body">${escapeHTML(letterContent)}</div>
+
+  <div class="footer">
+    Generated by Sue Letter — This document is not legal advice. | ${today}
+    ${watermark ? " | Free Plan — Upgrade at sueletter.com for a clean copy" : ""}
+  </div>
+</body>
+</html>`;
+}
+const NULL_BYTES_REGEX = new RegExp(String.fromCharCode(0), "g");
+const DIRECTION_OVERRIDES_REGEX = /[\u202E\u200F\u200E]/g;
+const MAX_FIELD_LENGTH = 1e5;
+function escapeHTML(str) {
+  if (!str) return "";
+  const sanitized = str.slice(0, MAX_FIELD_LENGTH).replace(NULL_BYTES_REGEX, "").replace(DIRECTION_OVERRIDES_REGEX, "");
+  return sanitized.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+function printLetter(data) {
+  const html = buildLetterHTML(data);
+  const win = window.open("", "_blank", "width=900,height=700");
+  if (!win) return;
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  win.onload = () => {
+    win.print();
+  };
+}
+async function copyLetterText(letterContent) {
+  await navigator.clipboard.writeText(letterContent);
+}
+export {
+  CircleAlert as C,
+  Mail as M,
+  TrendingUp as T,
+  copyLetterText as c,
+  printLetter as p
+};

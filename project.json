@@ -1,0 +1,25 @@
+{
+  "overview": "Sue Letter is an AI-powered demand letter generator that produces lawyer-quality legal demand letters in minutes. Users choose from 8 dispute types, fill a guided multi-step form, and receive a fully populated letter with real statute citations, live preview, and download options.",
+  "features": [
+    "AI demand letter generation for 8 dispute types",
+    "Multi-step guided form with live letter preview",
+    "Real statute citations tailored to jurisdiction and country",
+    "PDF and DOCX download with inline editing before export",
+    "Letter Strength Analyzer with score and improvement tips",
+    "Follow-up letter generator and AI Q&A assistant",
+    "Gmail integration for direct letter sending",
+    "Stripe subscription tiers with usage gating",
+    "Google/Apple/Microsoft SSO authentication",
+    "Image evidence upload with thumbnail previews"
+  ],
+  "category": "legal-tech",
+  "tags": [
+    "demand-letter",
+    "legal",
+    "ai",
+    "legal-tech",
+    "dispute-resolution",
+    "pdf-generator"
+  ],
+  "last_updated": "2026-04-17T09:18:11.807Z"
+}

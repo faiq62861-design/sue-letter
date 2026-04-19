@@ -1,0 +1,338 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   createdAt: Timestamp;
+   currentMonthYear: text;
+   email: opt text;
+   lettersThisMonth: nat;
+   plan: UserPlan;
+   stripeCustomerId: opt text;
+   stripeSubscriptionId: opt text;
+   totalLetters: nat;
+   userId: UserId;
+ };
+type UserPlan = 
+ variant {
+   Business;
+   Free;
+   PayPerLetter;
+   Pro;
+ };
+type UserId = text;
+type UpdateArticleInput = 
+ record {
+   authorName: opt text;
+   category: opt BlogCategory;
+   content: opt text;
+   excerpt: opt text;
+   isPublished: opt bool;
+   title: opt text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type Timestamp = int;
+type StripeSessionStatus = 
+ variant {
+   completed: record {
+                response: text;
+                userPrincipal: opt text;
+              };
+   failed: record {error: text;};
+ };
+type StripePlan = 
+ variant {
+   Business;
+   Pro;
+ };
+type StripeConfiguration = 
+ record {
+   allowedCountries: vec text;
+   secretKey: text;
+ };
+type StrengthAnalysis = 
+ record {
+   improvements: vec text;
+   responseLikelihood: ResponseLikelihood;
+   score: nat;
+   strengths: vec text;
+ };
+type ShoppingItem = 
+ record {
+   currency: text;
+   priceInCents: nat;
+   productDescription: text;
+   productName: text;
+   quantity: nat;
+ };
+type Result_4 = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type Result_3 = 
+ variant {
+   err: text;
+   ok: StrengthAnalysis;
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok: GeneratedLetter;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: bool;
+ };
+type ResponseLikelihood = 
+ variant {
+   High;
+   Low;
+   Medium;
+ };
+type PriorContact = 
+ record {
+   attempted: bool;
+   count: nat;
+   method: text;
+ };
+type PartnershipRequest = 
+ record {
+   company: text;
+   createdAt: Timestamp;
+   email: text;
+   id: text;
+   message: text;
+   name: text;
+   preferredDate: text;
+   preferredTime: text;
+   status: text;
+ };
+type LetterType = 
+ variant {
+   CeaseDesist;
+   ContractorDispute;
+   CreditReportDispute;
+   DebtRecovery;
+   EmploymentDispute;
+   InsuranceClaim;
+   LandlordTenant;
+   PropertyDamage;
+   RefundConsumer;
+ };
+type LetterTone = 
+ variant {
+   Assertive;
+   FinalWarning;
+   Firm;
+ };
+type LetterStatus = 
+ variant {
+   Draft;
+   FollowUpNeeded;
+   Resolved;
+   ResponseReceived;
+   Sent;
+ };
+type LetterId = text;
+type LetterFormData = 
+ record {
+   accountName: opt text;
+   accountNumber: opt text;
+   amountDemanded: opt nat;
+   creditBureauName: opt text;
+   creditDisputeDescription: opt text;
+   creditSupportingDocs: opt vec text;
+   currency: text;
+   deadlineDays: nat;
+   disputeDescription: text;
+   evidenceImages: vec text;
+   evidenceItems: vec text;
+   inaccuracyType: opt text;
+   incidentDate: text;
+   jurisdiction: text;
+   letterType: LetterType;
+   preferredResolution: text;
+   priorContact: PriorContact;
+   recipientAddress: Address;
+   recipientName: text;
+   recipientRole: text;
+   senderAddress: Address;
+   senderEmail: text;
+   senderName: text;
+   senderPhone: text;
+   tone: LetterTone;
+ };
+type GmailToken = 
+ record {
+   accessToken: text;
+   expiresAt: Timestamp;
+   refreshToken: text;
+ };
+type GeneratedLetter = 
+ record {
+   createdAt: Timestamp;
+   downloadCount: nat;
+   formData: LetterFormData;
+   id: LetterId;
+   isFollowUp: bool;
+   lastDownloadAt: opt int;
+   letterContent: text;
+   originalLetterId: opt LetterId;
+   status: LetterStatus;
+   userId: UserId;
+ };
+type CreatePartnershipRequestInput = 
+ record {
+   company: text;
+   email: text;
+   message: text;
+   name: text;
+   preferredDate: text;
+   preferredTime: text;
+ };
+type CreateArticleInput = 
+ record {
+   authorName: text;
+   category: BlogCategory;
+   content: text;
+   excerpt: text;
+   isPublished: bool;
+   slug: text;
+   title: text;
+ };
+type BlogCategory = 
+ variant {
+   CeaseDesist;
+   Contractor;
+   Debt;
+   Employment;
+   Insurance;
+   Landlord;
+   PropertyDamage;
+   Refund;
+ };
+type BlogArticle = 
+ record {
+   authorName: text;
+   category: BlogCategory;
+   content: text;
+   excerpt: text;
+   id: text;
+   isPublished: bool;
+   publishedAt: int;
+   slug: text;
+   title: text;
+   updatedAt: int;
+ };
+type Address = 
+ record {
+   city: text;
+   state: text;
+   street: text;
+   zip: text;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  answerQuestion: (question: text, letterId: LetterId) -> (Result_4);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  canGenerateLetter: () ->
+   (record {
+      canGenerate: bool;
+      reason: text;
+      remaining: nat;
+    }) query;
+  createArticle: (input: CreateArticleInput) ->
+   (variant {
+      err: text;
+      ok: BlogArticle;
+    });
+  /// Create a Stripe Checkout session for a pay-per-letter or plan upgrade.
+  /// Returns Stripe session JSON (contains `url` to redirect the user).
+  createCheckoutSession: (items: vec ShoppingItem, successUrl: text,
+   cancelUrl: text) -> (text);
+  createOrUpdateUser: (email: opt text) -> (UserProfile);
+  deleteLetterForUser: (id: LetterId) -> (Result);
+  generateFollowUpLetter: (originalLetterId: LetterId) -> (Result_4);
+  generateLetterStream: (formData: LetterFormData, country: opt text) ->
+   (Result_4);
+  generateStrengthAnalysis: (letterId: LetterId) -> (Result_3);
+  getAdminStats: () ->
+   (record {
+      activeSubscriptions: nat;
+      totalLetters: nat;
+      totalUsers: nat;
+    }) query;
+  getArticleBySlug: (slug: text) -> (opt BlogArticle) query;
+  getAuditLog: () -> (vec record {
+                            Timestamp;
+                            text;
+                            text;
+                            text;
+                          }) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getGmailToken: () -> (opt GmailToken) query;
+  getLetter: (id: LetterId) -> (opt GeneratedLetter) query;
+  /// Check payment status for a given Stripe session ID.
+  getStripeSessionStatus: (sessionId: text) -> (StripeSessionStatus);
+  getUserLetters: () -> (vec GeneratedLetter) query;
+  getUserProfile: () -> (opt UserProfile) query;
+  isAnthropicConfigured: () -> (bool) query;
+  isCallerAdmin: () -> (bool) query;
+  /// Check whether Stripe has been configured.
+  isStripeConfigured: () -> (bool) query;
+  listArticles: (categoryFilter: opt text) -> (vec BlogArticle) query;
+  listPartnershipRequests: () -> (vec PartnershipRequest);
+  recordDownload: (id: LetterId) -> (Result);
+  saveLetter: (formData: LetterFormData, letterContent: text) -> (Result_2);
+  sendLetterViaGmail: (recipientEmail: text, letterContent: text, subject:
+   text) -> (Result_1);
+  setAnthropicKey: (key: text) -> ();
+  /// Store the Stripe secret key and allowed countries (admin only).
+  setStripeConfiguration: (config: StripeConfiguration) -> ();
+  storeGmailToken: (accessToken: text, refreshToken: text, expiresAt: 
+   int) -> (Result_1);
+  submitPartnershipRequest: (input: CreatePartnershipRequestInput) ->
+   (variant {
+      err: text;
+      ok: PartnershipRequest;
+    });
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  updateArticle: (id: text, updates: UpdateArticleInput) ->
+   (variant {
+      err: text;
+      ok: BlogArticle;
+    });
+  updateLetterStatus: (id: LetterId, status: LetterStatus) -> (Result);
+  updateUserPlan: (userId: UserId, plan: StripePlan) -> (Result);
+}
